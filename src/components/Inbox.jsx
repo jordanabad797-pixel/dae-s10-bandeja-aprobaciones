@@ -3,13 +3,10 @@ import PlanCard from "./PlanCard";
 import { targetLabel, VERDICT_LABELS } from "../lib/plans";
 import { readStoredDecisions, writeStoredDecisions } from "../lib/storage";
 
-// TODO (Inbox) — completa la bandeja por partes. El JSX de abajo ya está escrito: no lo cambies,
-// haz que los datos que usa sean de verdad. Ejecuta `npm test` después de cada parte.
-//
-// Qué recuerda esta pantalla (y SOLO esto se guarda en estado):
-//   · decisions: un objeto { idDelPlan: "approved" | "rejected" }
-//   · query: el texto de la búsqueda
-// Todo lo demás (pendientes, decididos, contadores, filtrados) se CALCULA en cada dibujado.
+// The inbox owns the only two facts this screen remembers:
+//   - decisions: an object { planId: "approved" | "rejected" }
+//   - query: the search text
+// Everything else (pending, decided, counters, visible plans) is computed on every render.
 
 export default function Inbox({ plans }) {
   // Lazy initialization: the FUNCTION is passed, so storage is read once and not on every render.
@@ -33,8 +30,10 @@ export default function Inbox({ plans }) {
     setQuery("");
   }
 
-  // TODO 5 — Persistencia. Cada vez que cambie `decisions`, guárdalas con writeStoredDecisions(decisions)
-  //   dentro de un useEffect con la dependencia correcta.
+  // Saving is a side effect: it runs after the render, whenever `decisions` changes.
+  useEffect(() => {
+    writeStoredDecisions(decisions);
+  }, [decisions]);
 
   return (
     <section className="inbox" aria-labelledby="inbox-title">

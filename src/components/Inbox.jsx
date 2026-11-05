@@ -24,10 +24,14 @@ export default function Inbox({ plans }) {
   // Derived on every render, never stored: `decisions` stays the single source of truth.
   const pending = plans.filter((plan) => !Object.hasOwn(decisions, plan.id));
   const decided = plans.filter((plan) => Object.hasOwn(decisions, plan.id));
-  const visible = pending;
+  const needle = query.trim().toLowerCase();
+  const visible = pending.filter(
+    (plan) => plan.op.toLowerCase().includes(needle) || targetLabel(plan.target).toLowerCase().includes(needle)
+  );
 
-  // TODO 4 — clearSearch(): vacía la búsqueda.
-  function clearSearch() {}
+  function clearSearch() {
+    setQuery("");
+  }
 
   // TODO 5 — Persistencia. Cada vez que cambie `decisions`, guárdalas con writeStoredDecisions(decisions)
   //   dentro de un useEffect con la dependencia correcta.

@@ -11,6 +11,32 @@ solo ayuda a la persona a decidir bien.
 
 La guía del laboratorio (con su rúbrica) está en el campus virtual; aquí está el código.
 
+## Entrega del equipo
+
+**Integrantes:** Jordan Abad Mejia y Farid Chavez Campos · **Sección:** C24-4-B · **Docente:** Michael Montgomery Rosell
+
+| Comprobación | Resultado |
+|---|---|
+| `npm test` (`src/components`) | 61 de 61 pruebas pasan (al empezar: 27 pasaban y 34 fallaban) |
+| `npm run test:ai` (`src/ai`) | 61 de 61 pruebas pasan (la versión original: 50 pasaban y 11 fallaban) |
+| `npm run build` | Compila sin errores |
+
+Los cuatro fallos de la versión de la IA se corrigieron uno por commit, midiendo cada arreglo:
+
+| Commit | Fallo corregido | Pruebas que fallan |
+|---|---|---|
+| `fix(ai): comparar el hash completo` | Comparación parcial del hash (`includes`) | 11 → 9 |
+| `fix(ai): pasar clearSearch a onClick` | Función llamada en vez de pasada | 9 → 7 |
+| `fix(ai): crear un objeto nuevo en decide` | Estado modificado en lugar de copiado | 7 → 1 |
+| `fix(ai): quitar de PlanCard el estado duplicado` | Estado duplicado en el hijo | 1 → 0 |
+
+El estado original de `src/ai/` queda marcado con la etiqueta `ai-original`. Las salidas de las pruebas y las capturas
+están en [`docs/evidencias/`](docs/evidencias/).
+
+![Componentes, props, estado y eventos](docs/evidencias/arq_componentes.png)
+
+![Frontera de confianza entre la bandeja y el servidor](docs/evidencias/arq_frontera.png)
+
 ## Puesta en marcha
 
 Necesitas **Node 20.19 o superior** (o Node 22.12 o superior): `node -v`. En PowerShell:

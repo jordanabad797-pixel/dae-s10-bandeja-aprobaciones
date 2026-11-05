@@ -1,0 +1,21 @@
+
+> dae-s10-bandeja-aprobaciones@0.1.0 test:ai
+> vitest run --mode ai
+
+
+ RUN  v3.2.7 C:/Users/Jordan/AppData/Local/Claude-Data/claude_pzs8sxrjxfjjc/scratch-workspaces/76510c92-7b62-4c28-98a5-8516a8b90701/0a32d078-6c28-471d-87df-8a144947fe66/scratch-2026-11-05-1825eb/dae-s10-bandeja-aprobaciones
+
+ ✓ src/test/App.test.jsx (2 tests) 162ms
+ ✓ src/test/untrusted.test.jsx (3 tests) 199ms
+ ✓ src/test/Button.test.jsx (12 tests) 339ms
+ ✓ src/test/PlanCard.test.jsx (10 tests) 658ms
+ ✓ src/test/HashConfirm.test.jsx (12 tests) 2256ms
+   ✓ HashConfirm · la barrera del hash > se vuelve a deshabilitar si se borra una letra  325ms
+ ✓ src/test/Inbox.test.jsx (22 tests) 3378ms
+   ✓ Inbox · no modifica lo que recibe > buscar y decidir no tocan el arreglo plans ni sus planes  308ms
+
+ Test Files  6 passed (6)
+      Tests  61 passed (61)
+   Start at  15:48:18
+   Duration  5.49s (transform 300ms, setup 922ms, collect 1.99s, tests 6.99s, environment 5.28s, prepare 1.29s)
+

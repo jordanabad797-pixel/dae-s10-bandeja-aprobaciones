@@ -12,17 +12,14 @@ import { readStoredDecisions, writeStoredDecisions } from "../lib/storage";
 // Todo lo demás (pendientes, decididos, contadores, filtrados) se CALCULA en cada dibujado.
 
 export default function Inbox({ plans }) {
-  // TODO 1 — Estado. Sustituye cada valor de la derecha por una llamada a useState:
-  //   · decisions: empieza con lo que haya guardado (inicialización perezosa: useState(readStoredDecisions),
-  //     pasando la FUNCIÓN, sin llamarla).
-  //   · query: empieza en "".
-  const [decisions, setDecisions] = [{}, () => {}];
-  const [query, setQuery] = ["", () => {}];
+  // Lazy initialization: the FUNCTION is passed, so storage is read once and not on every render.
+  const [decisions, setDecisions] = useState(readStoredDecisions);
+  const [query, setQuery] = useState("");
 
-  // TODO 2 — decide(id, verdict): anota la decisión SIN modificar el objeto actual.
-  //   Crea un objeto nuevo con la decisión añadida ({ ...current, [id]: verdict }) y pásalo a setDecisions.
-  //   Usa la forma funcional: setDecisions((current) => ...).
-  function decide(id, verdict) {}
+  // A new object every time: React compares by reference, so mutating `current` would not redraw.
+  function decide(id, verdict) {
+    setDecisions((current) => ({ ...current, [id]: verdict }));
+  }
 
   // TODO 3 — Derivados. Calcúlalos a partir de plans, decisions y query; NO los guardes en estado.
   //   · pending: los planes cuyo id NO está en decisions.
